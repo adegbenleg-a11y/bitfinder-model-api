@@ -3,10 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import joblib, json
 import pandas as pd
-CLUSTER_TO_COURSE = {
-    0: "Web Development",
-    1: "Data Analysis",
-}
+
 app = FastAPI()
 
 app.add_middleware(
@@ -16,13 +13,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-model = joblib.load("bitfinder_model.joblib")   # <- match your model file name exactly
+model = joblib.load("model.joblib")
 columns = json.load(open("columns.json"))
 
-# Fill this in once you know which course each cluster means
-model = joblib.load("model.joblib")
-    # 0: "Web Development",
-    # 1: "Data Analysis",
+CLUSTER_TO_COURSE = {
+    0: "Web Development",
+    1: "Data Analysis",
 }
 
 class Inquiry(BaseModel):
