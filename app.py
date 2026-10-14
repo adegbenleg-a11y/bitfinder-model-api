@@ -57,4 +57,6 @@ def predict(data: Inquiry):
 
     df = pd.DataFrame([row], columns=columns)
     cluster = int(model.predict(df)[0])
-    return {"cluster": cluster, "course": CLUSTER_TO_COURSE.get(cluster, "unmapped")}
+        courses = CLUSTER_TO_COURSE.get(cluster, [])
+    course = " or ".join(courses) if courses else "unmapped"
+    return {"cluster": cluster, "courses": courses, "course": course}
