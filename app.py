@@ -3,7 +3,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import joblib, json
 import pandas as pd
-
+CLUSTER_TO_COURSE = {
+    0: "Web Development",
+    1: "Data Analysis",
+}
 app = FastAPI()
 
 app.add_middleware(
