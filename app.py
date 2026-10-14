@@ -17,8 +17,9 @@ model = joblib.load("model.joblib")
 columns = json.load(open("columns.json"))
 
 CLUSTER_TO_COURSE = {
-    0: "Web Development",
-    1: "Data Analysis",
+    0: ["Software Engineering & Development", "Machine Learning & Artificial Intelligence"],
+    1: ["Data Analytics", "Machine Learning & Artificial Intelligence"],
+    2: ["Cybersecurity", "Foundational & Digital Skills"],
 }
 
 class Inquiry(BaseModel):
