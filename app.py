@@ -16,6 +16,7 @@ app.add_middleware(
 model = joblib.load("model.joblib")
 columns = json.load(open("columns.json"))
 
+# Example pairings: replace after checking your clusters
 CLUSTER_TO_COURSE = {
     0: ["Software Engineering & Development", "Machine Learning & Artificial Intelligence"],
     1: ["Data Analytics", "Machine Learning & Artificial Intelligence"],
@@ -57,6 +58,6 @@ def predict(data: Inquiry):
 
     df = pd.DataFrame([row], columns=columns)
     cluster = int(model.predict(df)[0])
-        courses = CLUSTER_TO_COURSE.get(cluster, [])
+    courses = CLUSTER_TO_COURSE.get(cluster, [])
     course = " or ".join(courses) if courses else "unmapped"
     return {"cluster": cluster, "courses": courses, "course": course}
